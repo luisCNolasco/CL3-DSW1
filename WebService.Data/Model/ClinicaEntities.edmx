@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CLINICAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="IDE_DOC" />
+          </Key>
+          <Property Name="IDE_DOC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_DOC" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="APE_DOC" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IDE_ESP" Type="int" Nullable="false" />
+          <Property Name="TEL_DOC" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="COR_DOC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDE_DIS" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="SP_ACTUALIZAR_DOCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nom" Type="varchar" Mode="In" />
+          <Parameter Name="ape" Type="varchar" Mode="In" />
+          <Parameter Name="idEsp" Type="int" Mode="In" />
+          <Parameter Name="tel" Type="varchar" Mode="In" />
+          <Parameter Name="cor" Type="varchar" Mode="In" />
+          <Parameter Name="idDis" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ELIMINAR_DOCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_LISTAR_DISTRITO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_DOCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LISTAR_ESPECIALIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_REGISTRAR_DOCTOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="varchar" Mode="In" />
+          <Parameter Name="ape" Type="varchar" Mode="In" />
+          <Parameter Name="idEsp" Type="int" Mode="In" />
+          <Parameter Name="tel" Type="varchar" Mode="In" />
+          <Parameter Name="cor" Type="varchar" Mode="In" />
+          <Parameter Name="idDis" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CLINICAModelStoreContainer">
+          <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CLINICAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="IDE_DOC" />
+          </Key>
+          <Property Name="IDE_DOC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_DOC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APE_DOC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDE_ESP" Type="Int32" Nullable="false" />
+          <Property Name="TEL_DOC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COR_DOC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDE_DIS" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CLINICAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" />
+          <FunctionImport Name="SP_ACTUALIZAR_DOCTOR">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="ape" Mode="In" Type="String" />
+            <Parameter Name="idEsp" Mode="In" Type="Int32" />
+            <Parameter Name="tel" Mode="In" Type="String" />
+            <Parameter Name="cor" Mode="In" Type="String" />
+            <Parameter Name="idDis" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ELIMINAR_DOCTOR">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LISTAR_DISTRITO" ReturnType="Collection(CLINICAModel.SP_LISTAR_DISTRITO_Result)" />
+          <FunctionImport Name="SP_LISTAR_DOCTOR" ReturnType="Collection(CLINICAModel.SP_LISTAR_DOCTOR_Result)" />
+          <FunctionImport Name="SP_LISTAR_ESPECIALIDAD" ReturnType="Collection(CLINICAModel.SP_LISTAR_ESPECIALIDAD_Result)" />
+          <FunctionImport Name="SP_REGISTRAR_DOCTOR">
+            <Parameter Name="nom" Mode="In" Type="String" />
+            <Parameter Name="ape" Mode="In" Type="String" />
+            <Parameter Name="idEsp" Mode="In" Type="Int32" />
+            <Parameter Name="tel" Mode="In" Type="String" />
+            <Parameter Name="cor" Mode="In" Type="String" />
+            <Parameter Name="idDis" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_LISTAR_DISTRITO_Result">
+          <Property Type="Int32" Name="IDE_DIS" Nullable="false" />
+          <Property Type="String" Name="NOM_DIS" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_DOCTOR_Result">
+          <Property Type="Int32" Name="IDE_DOC" Nullable="false" />
+          <Property Type="String" Name="NOM_DOC" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="APE_DOC" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="DES_ESP" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="TEL_DOC" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="COR_DOC" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NOM_DIS" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_LISTAR_ESPECIALIDAD_Result">
+          <Property Type="Int32" Name="IDE_ESP" Nullable="false" />
+          <Property Type="String" Name="DES_ESP" Nullable="false" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CLINICAModelStoreContainer" CdmEntityContainer="CLINICAEntities">
+          <EntitySetMapping Name="DOCTOR">
+            <EntityTypeMapping TypeName="CLINICAModel.DOCTOR">
+              <MappingFragment StoreEntitySet="DOCTOR">
+                <ScalarProperty Name="IDE_DOC" ColumnName="IDE_DOC" />
+                <ScalarProperty Name="NOM_DOC" ColumnName="NOM_DOC" />
+                <ScalarProperty Name="APE_DOC" ColumnName="APE_DOC" />
+                <ScalarProperty Name="IDE_ESP" ColumnName="IDE_ESP" />
+                <ScalarProperty Name="TEL_DOC" ColumnName="TEL_DOC" />
+                <ScalarProperty Name="COR_DOC" ColumnName="COR_DOC" />
+                <ScalarProperty Name="IDE_DIS" ColumnName="IDE_DIS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZAR_DOCTOR" FunctionName="CLINICAModel.Store.SP_ACTUALIZAR_DOCTOR" />
+          <FunctionImportMapping FunctionImportName="SP_ELIMINAR_DOCTOR" FunctionName="CLINICAModel.Store.SP_ELIMINAR_DOCTOR" />
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_DISTRITO" FunctionName="CLINICAModel.Store.SP_LISTAR_DISTRITO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLINICAModel.SP_LISTAR_DISTRITO_Result">
+                <ScalarProperty Name="IDE_DIS" ColumnName="IDE_DIS" />
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_DOCTOR" FunctionName="CLINICAModel.Store.SP_LISTAR_DOCTOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLINICAModel.SP_LISTAR_DOCTOR_Result">
+                <ScalarProperty Name="IDE_DOC" ColumnName="IDE_DOC" />
+                <ScalarProperty Name="NOM_DOC" ColumnName="NOM_DOC" />
+                <ScalarProperty Name="APE_DOC" ColumnName="APE_DOC" />
+                <ScalarProperty Name="DES_ESP" ColumnName="DES_ESP" />
+                <ScalarProperty Name="TEL_DOC" ColumnName="TEL_DOC" />
+                <ScalarProperty Name="COR_DOC" ColumnName="COR_DOC" />
+                <ScalarProperty Name="NOM_DIS" ColumnName="NOM_DIS" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LISTAR_ESPECIALIDAD" FunctionName="CLINICAModel.Store.SP_LISTAR_ESPECIALIDAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CLINICAModel.SP_LISTAR_ESPECIALIDAD_Result">
+                <ScalarProperty Name="IDE_ESP" ColumnName="IDE_ESP" />
+                <ScalarProperty Name="DES_ESP" ColumnName="DES_ESP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_REGISTRAR_DOCTOR" FunctionName="CLINICAModel.Store.SP_REGISTRAR_DOCTOR" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

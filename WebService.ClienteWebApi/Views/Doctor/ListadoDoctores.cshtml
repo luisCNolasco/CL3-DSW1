@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebService.Data.Model.SP_LISTAR_DOCTOR_Result>
+
+@{
+    ViewBag.Title = "ListadoDoctores";
+}
+    <div class="container">
+        <h2>Listado Doctores</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.Label("ID")
+                </th>
+                <th>
+                    @Html.Label("Nombre")
+                </th>
+                <th>
+                    @Html.Label("Apellido")
+                </th>
+                <th>
+                    @Html.Label("Especialidad")
+                </th>
+                <th>
+                    @Html.Label("Teléfono")
+                </th>
+                <th>
+                    @Html.Label("Correo")
+                </th>
+                <th>
+                    @Html.Label("Distrito")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDE_DOC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOM_DOC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.APE_DOC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DES_ESP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TEL_DOC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.COR_DOC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOM_DIS)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "actualizarDoctor", new { id=item.IDE_DOC },new { @class="btn btn-warning"}) |
+                        @Html.ActionLink("Eliminar", "eliminarDoctor", new {  id=item.IDE_DOC },new { @class = "btn btn-danger" }) 
+                      
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+    <br />  <br />  
